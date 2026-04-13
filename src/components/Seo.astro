@@ -1,0 +1,47 @@
+---
+const {
+    title = "MEX",
+    description = "MEX - Comprehensive messenger-based ecosystem with integrated payments, digital assets and apps for maximum user engagement",
+    image = "https://i.postimg.cc/bJWdgWfZ/SEO-picture.png", // Standart photo
+    keywords = "MEX, messenger, payments, digital assets, apps, user engagement, MEX ecosystem, MEX payments, MEX digital assets, MEX apps",
+    author = "MEX",
+    canonicalURL = Astro.url,
+} = Astro.props;
+
+// Saytning asosiy manzili (Absolute URL uchun)
+const siteUrl = Astro.site || "https://sizning-saytingiz.uz";
+const socialImageURL = new URL(image, siteUrl);
+---
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="generator" content={Astro.generator} />
+<link rel="canonical" href={canonicalURL} />
+
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+<meta name="keywords" content={keywords} />
+<meta name="author" content={author} />
+<meta name="robots" content="index, follow" />
+
+<meta property="og:type" content="website" />
+<meta property="og:url" content={Astro.url} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={socialImageURL} />
+<meta property="og:site_name" content="MEX" />
+<meta property="og:locale" content="ru_RU" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content={Astro.url} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={socialImageURL} />
+<meta name="twitter:creator" content="@MEX" />
+
+<link rel="icon" href="/image/icon/favicon.svg" type="image/x-icon" />
+<link rel="apple-touch-icon" href="/image/icon/favicon.svg" />
+<meta name="theme-color" content="#050505" />
+<link rel="preload" href="/fonts/clash/Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+<link rel="preload" href="/fonts/source/Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous" />

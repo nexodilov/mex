@@ -1,0 +1,11 @@
+@use "./variables" as vrb;
+
+@mixin respond-to ($breakpoints){
+	@if map-has-key(vrb.$breakpoints, $breakpoints){
+		@media(min-width: map-get(vrb.$breakpoints, $breakpoints)){
+			@content;
+		}
+	}@else {
+		@warn "Breakpoint '#{$breakpoints}' mavjud emas.";
+	}
+}

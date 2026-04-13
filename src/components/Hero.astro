@@ -1,0 +1,166 @@
+---
+import { Image } from 'astro:assets'
+import appStore from '../assets/image/icon/app-store.svg'
+import googlePlay from '../assets/image/icon/google-play.svg'
+---
+
+<section class='hero'>
+	<div class='hero_text container'>
+		<h1>Next Generation Super App</h1>
+		<p>
+			A comprehensive messenger-based ecosystem with integrated payments,
+			digital assets and apps for maximum user engagement
+		</p>
+	</div>
+	<div class='hero_launch'>
+		<h2>Launch in the Q2 of 2026</h2>
+		<div class='hero_buttons'>
+			<a href='#'>
+				<Image
+					src={googlePlay}
+					alt='google play'
+					width={27.369771003723145}
+					height={30.04298210144043}
+				/>
+				<div class='hero_button_text'>
+					<span>Get it on</span>
+					<span>Google Play</span>
+				</div>
+			</a>
+			<a href='#'>
+				<Image
+					src={appStore}
+					alt='app store'
+					width={24.292320251464844}
+					height={29.338294982910156}
+				/>
+				<div class='hero_button_text'>
+					<span>Download on the</span>
+					<span>App Store</span>
+				</div>
+			</a>
+		</div>
+	</div>
+</section>
+
+<style lang='scss'>
+	@use '../scss/variables' as vrb;
+	@use '../scss/mixins' as mxn;
+
+	.container {
+		width: calc(100% - 32px);
+		margin: 0 auto;
+
+		@media (min-width: 770px) {
+			width: calc(100% - 80px);
+		}
+	}
+
+	.hero {
+		display: flex;
+		flex-direction: column;
+		gap: 197px;
+		position: relative;
+		padding-top: 72px;
+		z-index: 5;
+
+		&_text {
+			display: flex;
+			flex-direction: column;
+			gap: 24px;
+
+			& h1 {
+				padding: 0;
+				margin: 0;
+				color: #fff;
+				font-family: 'clash', sans-serif;
+				font-size: 32px;
+				font-weight: 700;
+				letter-spacing: 1px;
+				text-transform: uppercase;
+			}
+
+			& p {
+				padding: 0;
+				margin: 0;
+				color: var(--text-primary, #fff);
+				font-family: 'source', sans-serif;
+				font-size: 13px;
+				font-weight: 400;
+				line-height: 130%;
+			}
+		}
+
+		&_launch {
+			width: calc(100% - 64px);
+			margin: 0 auto;
+			display: flex;
+			flex-direction: column;
+			gap: 24px;
+			padding: 16px 20px;
+			border-radius: 20px;
+			background: rgba(0, 0, 0, 0);
+			backdrop-filter: blur(15px);
+			-webkit-backdrop-filter: blur(15px);
+			box-shadow:
+				inset 0 0.3px 2px rgba(255, 255, 255, 0.744),
+				0 5px 20px rgba(0, 0, 0, 0.5);
+			border: 1px solid rgba(255, 255, 255, 0.017);
+
+			& h2 {
+				padding: 0;
+				margin: 0;
+				color: #fff;
+				text-align: center;
+				font-family: 'source', sans-serif;
+				font-size: 20px;
+				font-weight: 700;
+				line-height: 24px;
+			}
+		}
+
+		&_buttons {
+			display: flex;
+			flex-direction: column;
+			gap: 8px;
+
+			a {
+				display: flex;
+				gap: 15px;
+				align-items: center;
+				justify-content: center;
+				padding: 6px 12px;
+				border-radius: 12px;
+				background: rgba(0, 0, 0, 0);
+				backdrop-filter: blur(30px);
+				-webkit-backdrop-filter: blur(30px);
+				box-shadow:
+					inset 0 0.3px 2px rgba(255, 255, 255, 0.744),
+					0 5px 20px rgba(0, 0, 0, 0.5);
+				border: 1px solid rgba(255, 255, 255, 0.017);
+				text-decoration: none;
+				.hero_button_text{
+					width: 40%;
+					display: flex;
+					flex-direction: column;
+
+					span:first-child {
+						font-size: 11px;
+						color: #fff;
+						font-family: 'source', sans-serif;
+						font-weight: 400;
+						line-height: 130%;
+					}
+
+					span:last-child {
+						font-size: 17px;
+						color: #fff;
+						font-family: 'source', sans-serif;
+						font-weight: 700;
+						line-height: 130%;
+					}
+				}
+			}
+		}
+	}
+</style>

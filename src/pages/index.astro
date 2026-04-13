@@ -1,0 +1,73 @@
+---
+import MainLayout from '../layouts/MainLayout.astro'
+
+// pages
+import Hero from '../components/Hero.astro'
+import { Image } from 'astro:assets'
+import union from '../assets/image/union.svg'
+import kubik from '../assets/image/kubik.svg'
+import bgHero from '../assets/image/bg-hero.svg'
+const title = 'MEX - Messenger Ecosystem & Payments'
+const description =
+	'MEX - Comprehensive messenger-based ecosystem with integrated payments, digital assets and apps.'
+---
+
+<MainLayout title={title} description={description}>
+	<section class='hero_wrapper'>
+		<Hero />
+		<Image src={union} alt='union' />
+		<Image src={kubik} alt='kubik' />
+		<Image src={bgHero} alt='bg hero' />
+	</section>
+</MainLayout>
+
+<style lang='scss'>
+	@use '../scss/variables' as vrb;
+	@use '../scss/mixins' as mxn;
+
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
+
+	.hero_wrapper {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: auto;
+		z-index: 10;
+		padding-bottom: 32px;
+		overflow: hidden;
+		border-radius: 0 0 24px 24px;
+		background: linear-gradient(
+			129deg,
+			rgba(16, 16, 16, 0.04) 53.39%,
+			rgba(98, 41, 0, 0.4) 74.96%,
+			rgba(255, 137, 53, 0.4) 98.81%
+		);
+		[alt='union'] {
+			position: absolute;
+			top: -74px;
+			left: -29.97px;
+			width: 437.927154541016px;
+			height: 875.854309082032px;
+			z-index: 1;
+		}
+		[alt='kubik'] {
+			position: absolute;
+			bottom: 17.18px;
+            right: 0;
+			z-index: 3;
+		}
+		[alt='bg hero'] {
+			position: absolute;
+			z-index: 2;
+			bottom: 122.02px;
+			right: 0px;
+			width: 357.9999084472656px;
+			height: 333.0441131591797px;
+		}
+	}
+</style>
