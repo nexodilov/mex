@@ -73,13 +73,15 @@ const { title, description } = Astro.props;
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+        font-family: 'clash', sans-serif;
+        font-weight: 400;
     }
 
     body {
         background-color: vrb.$mobile-bg-color;
         color: #fff;
 
-        @media (min-width: 770px) {
+        @media (min-width: 768px) {
             background-color: vrb.$desktop-bg-color;
         }
     }
@@ -88,7 +90,7 @@ const { title, description } = Astro.props;
         width: calc(100% - 32px);
         margin: 0 auto;
 
-        @media (min-width: 770px) {
+        @media (min-width: 768px) {
             width: calc(100% - 80px);
         }
     }
@@ -189,7 +191,7 @@ const { title, description } = Astro.props;
             }
         }
 
-        @media (min-width: 770px) {
+        @media (min-width: 768px) {
             margin-top: 20px;
             border-radius: 99px;
             padding: 12px 24px;
