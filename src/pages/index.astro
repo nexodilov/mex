@@ -8,6 +8,7 @@ import union from '../assets/image/union.svg'
 import kubik from '../assets/image/kubik.svg'
 import bgHero from '../assets/image/bg-hero.svg'
 import desktopBg from '../assets/image/desktop-bg.svg'
+import AboutPage from '../components/About-page.astro'
 
 const title = 'MEX - Messenger Ecosystem & Payments'
 const description =
@@ -22,6 +23,7 @@ const description =
 		<Image src={bgHero} alt='bg hero' />
 		<Image src={desktopBg} alt='desktop hero' />
 	</section>
+	<AboutPage />
 </MainLayout>
 
 <style lang='scss'>
@@ -35,7 +37,7 @@ const description =
 	}
 
 	.hero_wrapper {
-		position: absolute;
+		position: relative;
 		top: 0;
 		left: 0;
 		width: 100%;

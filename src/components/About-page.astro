@@ -1,0 +1,30 @@
+---
+import { Image } from 'astro:assets'
+import '../scss/fonts.scss'
+---
+
+<section class='about container'>
+	<h1>About Page</h1>
+</section>
+
+<style lang='scss'>
+	@use '../scss/variables' as vrb;
+	@use '../scss/mixins' as mxn;
+
+	@use '../scss/fonts.scss';
+
+	.container {
+		width: calc(100% - 32px);
+		margin: 0 auto;
+
+		@media (min-width: 768px) {
+			width: calc(100% - 80px);
+		}
+
+		border: 1px solid red;
+	}
+
+	.about {
+		border: 1px solid blue;
+	}
+</style>
