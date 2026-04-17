@@ -1,316 +1,321 @@
 ---
-import { Image } from "astro:assets";
-import Seo from "../components/Seo.astro";
-import "../scss/fonts.scss";
+import { Image } from 'astro:assets'
+import Seo from '../components/Seo.astro'
+import '../scss/fonts.scss'
 
-import logoImg from "../assets/image/icon/logo.svg";
-import searchImg from "../assets/image/icon/search.svg";
-import networkImg from "../assets/image/icon/network.svg";
+import logoImg from '../assets/image/icon/logo.svg'
+import searchImg from '../assets/image/icon/search.svg'
+import networkImg from '../assets/image/icon/network.svg'
 
-const { title, description } = Astro.props;
+const { title, description } = Astro.props
 ---
 
-<html lang="ru">
-    <head>
-        <Seo {title} {description} />
-    </head>
-    <body>
-        <header class="header container">
-            <div class="header__logo">
-                <button id="burger-btn" class="unstyled-btn burger-wrapper" aria-label="Toggle menu" aria-expanded="false">
-                    <div class="burger-lines">
-                        <span class="line line-1"></span>
-                        <span class="line line-2"></span>
-                        <span class="line line-3"></span>
-                    </div>
-                </button>
-                <a href="/">
-                    <Image
-                        src={logoImg}
-                        alt="MEX logo"
-                        width={124}
-                        height={28}
-                    />
-                </a>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="#main">MAIN</a></li>
-                    <li><a href="#news">NEWS</a></li>
-                </ul>
-            </nav>
-            <div class="header__button">
-                <Image
-                    src={searchImg}
-                    alt="search icon"
-                    width={24}
-                    height={24}
-                />
-                <Image
-                    src={networkImg}
-                    alt="network icon"
-                    width={24}
-                    height={24}
-                />
-            </div>
-        </header>
+<html lang='ru'>
+	<head>
+		<Seo {title} {description} />
+	</head>
+	<body>
+		<header class='header container'>
+			<div class='header__logo'>
+				<button
+					id='burger-btn'
+					class='unstyled-btn burger-wrapper'
+					aria-label='Toggle menu'
+					aria-expanded='false'
+				>
+					<div class='burger-lines'>
+						<span class='line line-1'></span>
+						<span class='line line-2'></span>
+						<span class='line line-3'></span>
+					</div>
+				</button>
+				<a href='/'>
+					<Image src={logoImg} alt='MEX logo' width={124} height={28} />
+				</a>
+			</div>
+			<nav>
+				<ul>
+					<li><a href='#main'>MAIN</a></li>
+					<li><a href='#news'>NEWS</a></li>
+				</ul>
+			</nav>
+			<div class='header__button'>
+				<Image src={searchImg} alt='search icon' width={24} height={24} />
+				<Image src={networkImg} alt='network icon' width={24} height={24} />
+			</div>
+		</header>
 
-        <main>
-            <slot />
-        </main>
+		<main>
+			<slot />
+		</main>
 
-        <footer></footer>
-    </body>
+		<footer></footer>
+	</body>
 </html>
 
-<style lang="scss">
-    @use "../scss/variables" as vrb;
-    @use "../scss/mixins" as mxn;
+<style lang='scss'>
+	@use '../scss/variables' as vrb;
+	@use '../scss/mixins' as mxn;
 
-    @use "../scss/fonts.scss";
+	@use '../scss/fonts.scss';
 
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: 'clash', sans-serif;
-        font-weight: 400;
-    }
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+		font-family: 'clash', sans-serif;
+		font-weight: 400;
+	}
 
-    body {
-        background-color: vrb.$mobile-bg-color;
-        color: #fff;
+	body {
+		background-color: vrb.$mobile-bg-color;
+		color: #fff;
 
-        @media (min-width: 768px) {
-            background-color: vrb.$desktop-bg-color;
-        }
-    }
+		@media (min-width: 768px) {
+			background-color: vrb.$desktop-bg-color;
+		}
+	}
 
-    .container {
-        width: calc(100% - 32px);
-        margin: 0 auto;
+	.container {
+		width: calc(100% - 32px);
+		margin: 0 auto;
 
-        @media (min-width: 768px) {
-            width: calc(100% - 80px);
-        }
-    }
+		@media (min-width: 768px) {
+			width: calc(100% - 80px);
+		}
+	}
 
-    .burger-wrapper {
-        width: 30px;
-        height: 24px;
-        position: relative;
-        z-index: 1001;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+	.burger-wrapper {
+		width: 30px;
+		height: 24px;
+		position: relative;
+		z-index: 1001;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
 
-    .burger-lines {
-        width: 90%;
-        height: 18px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        
-        .line {
-            width: 100%;
-            height: 2px;
-            background-color: #fff;
-            border-radius: 2px;
-            display: block;
-            transform-origin: center;
-        }
-    }
+	.burger-lines {
+		width: 90%;
+		height: 18px;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
 
-    .unstyled-btn {
-        background: none;
-        border: none;
-        padding: 0;
-        cursor: pointer;
-        display: inline-flex;
-    }
+		.line {
+			width: 100%;
+			height: 2px;
+			background-color: #fff;
+			border-radius: 2px;
+			display: block;
+			transform-origin: center;
+		}
+	}
 
-    .header {
-        position: sticky;
-        top: 0px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 8px 0;
-        z-index: 10000;
+	.unstyled-btn {
+		background: none;
+		border: none;
+		padding: 0;
+		cursor: pointer;
+		display: inline-flex;
+	}
 
-        &__logo {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            z-index: 1001;
-        }
+	.header {
+		position: fixed;
+		top: 0px;
+		left: 50%;
+		transform: translateX(-50%);
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 8px 0;
+		z-index: 10000;
 
-        nav {
-            display: none;
+		&__logo {
+			display: flex;
+			align-items: center;
+			gap: 20px;
+			z-index: 1001;
+		}
 
-            @media (max-width: 799px) {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100vw;
-                height: 100vh;
-                background-color: vrb.$desktop-bg-color;
-                backdrop-filter: blur(25px);
-                -webkit-backdrop-filter: blur(25px);
-                z-index: 990;
-                
-                ul {
-                    height: 100%;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    align-items: center;
-                    gap: 50px;
-                    list-style: none;
+		nav {
+			display: none;
 
-                    li a {
-                        color: #fff;
-                        text-decoration: none;
-                        font-size: 36px;
-                        font-weight: 700;
-                        font-family: "source", sans-serif;
-                        display: block;
-                        text-transform: uppercase;
-                        letter-spacing: 4px;
-                        text-shadow: 0 4px 20px rgba(247, 161, 76, 0.3);
-                    }
-                }
-            }
-        }
+			@media (max-width: 799px) {
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100vw;
+				height: 100vh;
+				background-color: vrb.$desktop-bg-color;
+				backdrop-filter: blur(25px);
+				-webkit-backdrop-filter: blur(25px);
+				z-index: 990;
 
-        &__button {
-            z-index: 1001;
-            [alt="search icon"] {
-                display: none;
-            }
-        }
+				ul {
+					height: 100%;
+					display: flex;
+					flex-direction: column;
+					justify-content: center;
+					align-items: center;
+					gap: 50px;
+					list-style: none;
 
-        @media (min-width: 768px) {
-            margin-top: 20px;
-            border-radius: 99px;
-            padding: 12px 24px;
-            border: 1px solid rgba(255, 255, 255, 0.017);
-            box-shadow:
-                inset 0 0.3px 2px rgba(255, 255, 255, 0.744),
-                0 5px 20px rgba(0, 0, 0, 0.5);
-            background-color: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(100px);
-            -webkit-backdrop-filter: blur(100px);
+					li a {
+						color: #fff;
+						text-decoration: none;
+						font-size: 36px;
+						font-weight: 700;
+						font-family: 'source', sans-serif;
+						display: block;
+						text-transform: uppercase;
+						letter-spacing: 4px;
+						text-shadow: 0 4px 20px rgba(247, 161, 76, 0.3);
+					}
+				}
+			}
+		}
 
-            &__logo {
-                .burger-wrapper {
-                    display: none;
-                }
-            }
+		&__button {
+			z-index: 1001;
+			[alt='search icon'] {
+				display: none;
+			}
+		}
 
-            nav {
-                position: absolute !important;
-                left: 50% !important;
-                top: auto !important;
-                transform: translateX(-50%) !important;
-                width: auto !important;
-                height: auto !important;
-                background: none !important;
-                backdrop-filter: none !important;
-                display: block !important; 
+		@media (min-width: 768px) {
+			margin-top: 20px;
+			border-radius: 99px;
+			padding: 12px 24px;
+			border: 1px solid rgba(255, 255, 255, 0.017);
+			box-shadow:
+				inset 0 0.3px 2px rgba(255, 255, 255, 0.744),
+				0 5px 20px rgba(0, 0, 0, 0.5);
+			background-color: rgba(0, 0, 0, 0.3);
+			backdrop-filter: blur(100px);
+			-webkit-backdrop-filter: blur(100px);
 
-                ul {
-                    display: flex !important;
-                    flex-direction: row !important;
-                    align-items: center;
-                    gap: 20px;
-                    list-style: none;
-                    height: auto !important;
+			&__logo {
+				.burger-wrapper {
+					display: none;
+				}
+			}
 
-                    li {
-                        opacity: 1 !important;
-                        transform: none !important;
-                        padding: 4px 0;
-                        
-                        a {
-                            color: #fff;
-                            text-decoration: none;
-                            font-size: 16px !important;
-                            font-weight: 400 !important;
-                            font-family: "source", sans-serif;
-                            display: inline-block !important;
-                            text-transform: none !important;
-                            letter-spacing: 0 !important;
-                            text-shadow: none !important;
-                        }
+			nav {
+				position: absolute !important;
+				left: 50% !important;
+				top: auto !important;
+				transform: translateX(-50%) !important;
+				width: auto !important;
+				height: auto !important;
+				background: none !important;
+				backdrop-filter: none !important;
+				display: block !important;
 
-                        &:first-child {
-                            border-bottom: 2px solid #f7a14c;
-                        }
-                    }
-                }
-            }
-        }
-    }
+				ul {
+					display: flex !important;
+					flex-direction: row !important;
+					align-items: center;
+					gap: 20px;
+					list-style: none;
+					height: auto !important;
+
+					li {
+						opacity: 1 !important;
+						transform: none !important;
+						padding: 4px 0;
+
+						a {
+							color: #fff;
+							text-decoration: none;
+							font-size: 16px !important;
+							font-weight: 400 !important;
+							font-family: 'source', sans-serif;
+							display: inline-block !important;
+							text-transform: none !important;
+							letter-spacing: 0 !important;
+							text-shadow: none !important;
+						}
+
+						&:first-child {
+							border-bottom: 2px solid #f7a14c;
+						}
+					}
+				}
+			}
+		}
+	}
 </style>
 
 <script>
-    import { gsap } from "gsap";
+	import { gsap } from 'gsap'
 
-    const initMobileMenu = () => {
-        const burgerBtn = document.getElementById("burger-btn");
-        const nav = document.querySelector(".header nav");
-        const navItems = document.querySelectorAll(".header nav ul li");
-        const line1 = document.querySelector(".line-1");
-        const line2 = document.querySelector(".line-2");
-        const line3 = document.querySelector(".line-3");
+	const initMobileMenu = () => {
+		const burgerBtn = document.getElementById('burger-btn')
+		const nav = document.querySelector('.header nav')
+		const navItems = document.querySelectorAll('.header nav ul li')
+		const line1 = document.querySelector('.line-1')
+		const line2 = document.querySelector('.line-2')
+		const line3 = document.querySelector('.line-3')
 
-        if (!burgerBtn || !nav || !line1 || !line2 || !line3) return;
+		if (!burgerBtn || !nav || !line1 || !line2 || !line3) return
 
-        const tl = gsap.timeline({ paused: true, reversed: true });
+		const tl = gsap.timeline({ paused: true, reversed: true })
 
-        tl.to(line2, { opacity: 0, duration: 0.2 }, 0)
-          .to(line1, { y: 8, rotation: 45, duration: 0.3, ease: "power2.inOut" }, 0)
-          .to(line3, { y: -8, rotation: -45, duration: 0.3, ease: "power2.inOut" }, 0)
-          .set(nav, { display: "block", xPercent: -100 }, 0)
-          .to(nav, { xPercent: 0, duration: 0.6, ease: "expo.out" }, 0.1)
-          .fromTo(navItems,
-              { opacity: 0, x: -30, scale: 0.9 },
-              { opacity: 1, x: 0, scale: 1, duration: 0.4, stagger: 0.1, ease: "back.out(1.7)", clearProps: "transform" },
-              "-=0.3"
-          );
+		tl.to(line2, { opacity: 0, duration: 0.2 }, 0)
+			.to(line1, { y: 8, rotation: 45, duration: 0.3, ease: 'power2.inOut' }, 0)
+			.to(
+				line3,
+				{ y: -8, rotation: -45, duration: 0.3, ease: 'power2.inOut' },
+				0,
+			)
+			.set(nav, { display: 'block', xPercent: -100 }, 0)
+			.to(nav, { xPercent: 0, duration: 0.6, ease: 'expo.out' }, 0.1)
+			.fromTo(
+				navItems,
+				{ opacity: 0, x: -30, scale: 0.9 },
+				{
+					opacity: 1,
+					x: 0,
+					scale: 1,
+					duration: 0.4,
+					stagger: 0.1,
+					ease: 'back.out(1.7)',
+					clearProps: 'transform',
+				},
+				'-=0.3',
+			)
 
-        const resetDesktop = () => {
-            if (window.innerWidth >= 770 && !tl.reversed()) {
-                tl.progress(0).pause();
-                tl.reversed(true);
-                nav.classList.remove("mobile-open");
-                burgerBtn.setAttribute("aria-expanded", "false");
-                gsap.set([nav, navItems, line1, line2, line3], { clearProps: "all" });
-            }
-        };
+		const resetDesktop = () => {
+			if (window.innerWidth >= 770 && !tl.reversed()) {
+				tl.progress(0).pause()
+				tl.reversed(true)
+				nav.classList.remove('mobile-open')
+				burgerBtn.setAttribute('aria-expanded', 'false')
+				gsap.set([nav, navItems, line1, line2, line3], { clearProps: 'all' })
+			}
+		}
 
-        window.addEventListener("resize", resetDesktop);
+		window.addEventListener('resize', resetDesktop)
 
-        burgerBtn.addEventListener("click", () => {
-            if (window.innerWidth >= 770) return; 
+		burgerBtn.addEventListener('click', () => {
+			if (window.innerWidth >= 770) return
 
-            const isReversed = tl.reversed();
-            burgerBtn.setAttribute("aria-expanded", isReversed ? "true" : "false");
+			const isReversed = tl.reversed()
+			burgerBtn.setAttribute('aria-expanded', isReversed ? 'true' : 'false')
 
-            if (isReversed) {
-                nav.classList.add("mobile-open");
-                tl.play();
-            } else {
-                tl.reverse();
-                setTimeout(() => {
-                    nav.classList.remove("mobile-open");
-                }, 600);
-            }
-        });
-    };
+			if (isReversed) {
+				nav.classList.add('mobile-open')
+				tl.play()
+			} else {
+				tl.reverse()
+				setTimeout(() => {
+					nav.classList.remove('mobile-open')
+				}, 600)
+			}
+		})
+	}
 
-    document.addEventListener("DOMContentLoaded", initMobileMenu);
-    document.addEventListener("astro:page-load", initMobileMenu);
+	document.addEventListener('DOMContentLoaded', initMobileMenu)
+	document.addEventListener('astro:page-load', initMobileMenu)
 </script>
