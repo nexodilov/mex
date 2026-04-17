@@ -1,0 +1,159 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro'
+import Hero from '../../components/Hero.astro'
+import AboutPage from '../../components/About-page.astro'
+import { Image } from 'astro:assets'
+
+import union from '../../assets/image/union.svg'
+import kubik from '../../assets/image/kubik.svg'
+import bgHero from '../../assets/image/bg-hero.svg'
+import desktopBg from '../../assets/image/desktop-bg.svg'
+
+import { translations, useTranslations, type Lang } from '../../i18n'
+
+export function getStaticPaths() {
+	return [{ params: { lang: 'ru' } }, { params: { lang: 'en' } }]
+}
+
+const lang = Astro.params.lang as Lang
+const t = useTranslations(lang)
+---
+
+<MainLayout
+	title={t('seo.title')}
+	description={t('seo.description')}
+	lang={lang}
+>
+	<section class='hero_wrapper'>
+		<Hero
+			h1={t('hero.h1')}
+			p={t('hero.p')}
+			launch={t('hero.launch')}
+			getItOn={t('hero.getItOn')}
+			downloadOn={t('hero.downloadOn')}
+		/>
+		<Image src={union} alt='union' />
+		<Image src={kubik} alt='kubik' />
+		<Image src={bgHero} alt='bg hero' />
+		<Image src={desktopBg} alt='desktop hero' />
+	</section>
+	<AboutPage label={t('about.label')} heading={t('about.heading')} />
+</MainLayout>
+
+<style lang='scss'>
+	@use '../../scss/variables' as vrb;
+	@use '../../scss/mixins' as mxn;
+
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
+
+	.hero_wrapper {
+		position: relative;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: auto;
+		z-index: 10;
+		padding-bottom: 32px;
+		overflow: hidden;
+		border-radius: 0 0 24px 24px;
+		background: linear-gradient(
+			129deg,
+			rgba(16, 16, 16, 0.04) 53.39%,
+			rgba(98, 41, 0, 0.4) 74.96%,
+			rgba(255, 137, 53, 0.4) 98.81%
+		);
+
+		@media (min-width: 768px) {
+			padding-bottom: 120px;
+		}
+
+		@media (min-width: 1440px) {
+			padding-bottom: 200px;
+		}
+
+		[alt='desktop hero'] {
+			display: none;
+
+			@media (min-width: 1024px) {
+				display: block;
+				position: absolute;
+				bottom: 0;
+				right: 0;
+				width: 100%;
+				height: auto;
+			}
+		}
+
+		[alt='union'] {
+			position: absolute;
+			top: -74px;
+			right: 0px;
+			width: 437.927154541016px;
+			height: 875.854309082032px;
+			z-index: 1;
+
+			@media (min-width: 1024px) {
+				display: none;
+			}
+		}
+		[alt='kubik'] {
+			position: absolute;
+			bottom: 17.18px;
+			right: 0;
+			z-index: 3;
+
+			@media (max-width: 320px) {
+				right: -10px;
+				top: 10pc;
+				width: 300px;
+				height: 30pc;
+			}
+
+			@media (min-width: 768px) {
+				right: -10pc;
+				top: 4pc;
+				width: 809.3944603143202px;
+				height: 688.6492835686205px;
+			}
+
+			@media (min-width: 1024px) {
+				right: -15pc;
+				top: -10pc;
+				width: 1251.675036597773px;
+				height: 1017.0480247302013px;
+			}
+
+			@media (min-width: 1440px) {
+				right: -15pc;
+				top: -10pc;
+				width: 1451.675036597773px;
+				height: 1217.0480247302013px;
+			}
+		}
+		[alt='bg hero'] {
+			position: absolute;
+			z-index: 2;
+			bottom: 122.02px;
+			right: 0px;
+			width: 357.9999084472656px;
+			height: 333.0441131591797px;
+
+			@media (min-width: 1024px) {
+				bottom: 50%;
+				right: 50%;
+				transform: translate(50%, 50%);
+				width: 742.9961547851562px;
+				height: 671.12939453125px;
+			}
+
+			@media (min-width: 1440px) {
+				width: 1242.9961547851562px;
+				height: 1171.12939453125px;
+			}
+		}
+	}
+</style>

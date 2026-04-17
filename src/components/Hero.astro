@@ -3,18 +3,17 @@ import { Image } from 'astro:assets'
 import appStore from '../assets/image/icon/app-store.svg'
 import googlePlay from '../assets/image/icon/google-play.svg'
 import '../scss/fonts.scss'
+
+const { h1, p, launch, getItOn, downloadOn } = Astro.props
 ---
 
 <section class='hero'>
 	<div class='hero_text container'>
-		<h1>Next Generation Super App</h1>
-		<p>
-			A comprehensive messenger-based ecosystem with integrated payments,
-			digital assets and apps for maximum user engagement
-		</p>
+		<h1>{h1}</h1>
+		<p>{p}</p>
 	</div>
 	<div class='hero_launch'>
-		<h2>Launch in the Q2 of 2026</h2>
+		<h2>{launch}</h2>
 		<div class='hero_buttons'>
 			<a href='#'>
 				<Image
@@ -24,7 +23,7 @@ import '../scss/fonts.scss'
 					height={30.04298210144043}
 				/>
 				<div class='hero_button_text'>
-					<span>Get it on</span>
+					<span>{getItOn}</span>
 					<span>Google Play</span>
 				</div>
 			</a>
@@ -36,7 +35,7 @@ import '../scss/fonts.scss'
 					height={29.338294982910156}
 				/>
 				<div class='hero_button_text'>
-					<span>Download on the</span>
+					<span>{downloadOn}</span>
 					<span>App Store</span>
 				</div>
 			</a>

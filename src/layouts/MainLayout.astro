@@ -7,12 +7,23 @@ import logoImg from '../assets/image/icon/logo.svg'
 import searchImg from '../assets/image/icon/search.svg'
 import networkImg from '../assets/image/icon/network.svg'
 
-const { title, description } = Astro.props
+import { languages, useTranslations, type Lang } from '../i18n'
+
+const { title, description, lang = 'ru' } = Astro.props
+const currentLang = lang as Lang
+const t = useTranslations(currentLang)
+
+// Build language switch URLs — preserve the current path structure
+const currentPath = Astro.url.pathname
+const pathSegments = currentPath.split('/').filter(Boolean)
+// Remove the lang prefix (first segment) and get the rest of the path
+const restOfPath =
+	pathSegments.length > 1 ? '/' + pathSegments.slice(1).join('/') : ''
 ---
 
-<html lang='ru'>
+<html lang={currentLang}>
 	<head>
-		<Seo {title} {description} />
+		<Seo {title} {description} lang={currentLang} />
 	</head>
 	<body>
 		<header class='header container'>
@@ -29,19 +40,40 @@ const { title, description } = Astro.props
 						<span class='line line-3'></span>
 					</div>
 				</button>
-				<a href='/'>
+				<a href={`/${currentLang}`}>
 					<Image src={logoImg} alt='MEX logo' width={124} height={28} />
 				</a>
 			</div>
-			<nav>
+
+			<nav id='mobile-nav'>
 				<ul>
-					<li><a href='#main'>MAIN</a></li>
-					<li><a href='#news'>NEWS</a></li>
+					<li><a href='#main'>{t('nav.main')}</a></li>
+					<li><a href='#news'>{t('nav.news')}</a></li>
 				</ul>
 			</nav>
+
 			<div class='header__button'>
 				<Image src={searchImg} alt='search icon' width={24} height={24} />
-				<Image src={networkImg} alt='network icon' width={24} height={24} />
+				<button id='lang-toggle' class='unstyled-btn lang-toggle-btn'>
+					<Image src={networkImg} alt='network icon' width={24} height={24} />
+				</button>
+				<!-- Til tanlash dropdown -->
+				<div id='lang-dropdown' class='lang-dropdown'>
+					<ul>
+						{
+							Object.entries(languages).map(([code, label]) => (
+								<li>
+									<a
+										href={`/${code}${restOfPath}`}
+										class={code === currentLang ? 'active' : ''}
+									>
+										{label}
+									</a>
+								</li>
+							))
+						}
+					</ul>
+				</div>
 			</div>
 		</header>
 
@@ -56,20 +88,18 @@ const { title, description } = Astro.props
 <style lang='scss'>
 	@use '../scss/variables' as vrb;
 	@use '../scss/mixins' as mxn;
-
 	@use '../scss/fonts.scss';
 
 	* {
 		margin: 0;
 		padding: 0;
 		box-sizing: border-box;
-		font-family: 'clash', sans-serif;
-		font-weight: 400;
 	}
 
 	body {
 		background-color: vrb.$mobile-bg-color;
 		color: #fff;
+		overflow-x: hidden;
 
 		@media (min-width: 768px) {
 			background-color: vrb.$desktop-bg-color;
@@ -108,7 +138,6 @@ const { title, description } = Astro.props
 			background-color: #fff;
 			border-radius: 2px;
 			display: block;
-			transform-origin: center;
 		}
 	}
 
@@ -121,10 +150,8 @@ const { title, description } = Astro.props
 	}
 
 	.header {
-		position: fixed;
+		position: sticky;
 		top: 0px;
-		left: 50%;
-		transform: translateX(-50%);
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
@@ -151,6 +178,7 @@ const { title, description } = Astro.props
 				backdrop-filter: blur(25px);
 				-webkit-backdrop-filter: blur(25px);
 				z-index: 990;
+				margin: 0;
 
 				ul {
 					height: 100%;
@@ -178,12 +206,43 @@ const { title, description } = Astro.props
 
 		&__button {
 			z-index: 1001;
+			display: flex;
+			align-items: center;
+			gap: 12px;
+			position: relative;
+
 			[alt='search icon'] {
 				display: none;
+			}
+
+			.lang-toggle-btn {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+		}
+
+		// Telefon uchun scroll bo'lganda qo'shiladigan glass effect
+		@media (max-width: 767px) {
+			&.scrolled {
+				width: 100%;
+				margin: 0;
+				padding-left: 16px;
+				padding-right: 16px;
+				border: 1px solid rgba(255, 255, 255, 0.017);
+				box-shadow:
+					inset 0 0.3px 2px rgba(255, 255, 255, 0.744),
+					0 5px 20px rgba(0, 0, 0, 0.5);
+				background-color: rgba(0, 0, 0, 0.3);
+				backdrop-filter: blur(100px);
+				-webkit-backdrop-filter: blur(100px);
 			}
 		}
 
 		@media (min-width: 768px) {
+			position: fixed;
+			left: 50%;
+			transform: translateX(-50%);
 			margin-top: 20px;
 			border-radius: 99px;
 			padding: 12px 24px;
@@ -245,6 +304,68 @@ const { title, description } = Astro.props
 			}
 		}
 	}
+
+	// Til dropdown stili
+	.lang-dropdown {
+		position: absolute;
+		top: calc(100% + 10px);
+		right: 0;
+		margin-top: 5px;
+		min-width: 150px;
+		border-radius: 16px;
+		z-index: 99999;
+		opacity: 0;
+		visibility: hidden;
+		pointer-events: none;
+
+		border: 1px solid rgba(255, 255, 255, 0.017);
+		box-shadow:
+			inset 0 1px 3px rgba(214, 213, 213, 0.744),
+			0 5px 20px rgba(26, 26, 26, 0.994);
+		background-color: rgba(39, 39, 39, 0.7);
+		backdrop-filter: blur(100px);
+		-webkit-backdrop-filter: blur(100px);
+
+		ul {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+
+			li {
+				margin: 0;
+
+				a {
+					display: block;
+					padding: 13px 20px;
+					color: #fff;
+					text-decoration: none;
+					font-family: 'source', sans-serif;
+					font-size: 14px;
+					font-weight: 400;
+					transition: background-color 0.2s ease;
+
+					&:hover {
+						background-color: rgba(255, 255, 255, 0.1);
+					}
+
+					&.active {
+						color: #f7a14c;
+						font-weight: 600;
+					}
+				}
+			}
+
+			li:first-child a {
+				border-top-left-radius: 16px;
+				border-top-right-radius: 16px;
+			}
+
+			li:last-child a {
+				border-bottom-left-radius: 16px;
+				border-bottom-right-radius: 16px;
+			}
+		}
+	}
 </style>
 
 <script>
@@ -252,8 +373,8 @@ const { title, description } = Astro.props
 
 	const initMobileMenu = () => {
 		const burgerBtn = document.getElementById('burger-btn')
-		const nav = document.querySelector('.header nav')
-		const navItems = document.querySelectorAll('.header nav ul li')
+		const nav = document.getElementById('mobile-nav')
+		const navItems = document.querySelectorAll('#mobile-nav ul li')
 		const line1 = document.querySelector('.line-1')
 		const line2 = document.querySelector('.line-2')
 		const line3 = document.querySelector('.line-3')
@@ -269,7 +390,7 @@ const { title, description } = Astro.props
 				{ y: -8, rotation: -45, duration: 0.3, ease: 'power2.inOut' },
 				0,
 			)
-			.set(nav, { display: 'block', xPercent: -100 }, 0)
+			.set(nav, { display: 'block', xPercent: -100, x: 0 }, 0)
 			.to(nav, { xPercent: 0, duration: 0.6, ease: 'expo.out' }, 0.1)
 			.fromTo(
 				navItems,
@@ -287,7 +408,7 @@ const { title, description } = Astro.props
 			)
 
 		const resetDesktop = () => {
-			if (window.innerWidth >= 770 && !tl.reversed()) {
+			if (window.innerWidth >= 800) {
 				tl.progress(0).pause()
 				tl.reversed(true)
 				nav.classList.remove('mobile-open')
@@ -299,7 +420,7 @@ const { title, description } = Astro.props
 		window.addEventListener('resize', resetDesktop)
 
 		burgerBtn.addEventListener('click', () => {
-			if (window.innerWidth >= 770) return
+			if (window.innerWidth >= 800) return
 
 			const isReversed = tl.reversed()
 			burgerBtn.setAttribute('aria-expanded', isReversed ? 'true' : 'false')
@@ -308,14 +429,137 @@ const { title, description } = Astro.props
 				nav.classList.add('mobile-open')
 				tl.play()
 			} else {
-				tl.reverse()
-				setTimeout(() => {
+				tl.reverse().then(() => {
 					nav.classList.remove('mobile-open')
-				}, 600)
+				})
 			}
 		})
 	}
 
-	document.addEventListener('DOMContentLoaded', initMobileMenu)
-	document.addEventListener('astro:page-load', initMobileMenu)
+	// Scroll orqali header fonini o'zgartirish (faqat telefonlar uchun)
+	const initScrollHeader = () => {
+		const header = document.querySelector('.header')
+		if (!header) return
+
+		const handleScroll = () => {
+			if (window.innerWidth >= 768) {
+				header.classList.remove('scrolled')
+				if (!header.classList.contains('container')) {
+					header.classList.add('container')
+				}
+				return
+			}
+
+			if (window.scrollY > 0) {
+				header.classList.add('scrolled')
+				header.classList.remove('container')
+			} else {
+				header.classList.remove('scrolled')
+				header.classList.add('container')
+			}
+		}
+
+		handleScroll()
+		window.addEventListener('scroll', handleScroll, { passive: true })
+		window.addEventListener('resize', handleScroll)
+	}
+
+	// Til dropdown animatsiyasi
+	const initLangDropdown = () => {
+		const toggleBtn = document.getElementById('lang-toggle')
+		const dropdown = document.getElementById('lang-dropdown')
+
+		if (!toggleBtn || !dropdown) return
+
+		let isOpen = false
+		let animating = false
+		let tl
+
+		const createTimeline = () => {
+			tl = gsap.timeline({
+				paused: true,
+				onStart: () => {
+					animating = true
+				},
+				onComplete: () => {
+					animating = false
+				},
+			})
+
+			// Ochilish animatsiyasi
+			tl.set(dropdown, { display: 'block', visibility: 'visible' })
+				.fromTo(
+					dropdown,
+					{ y: -15, opacity: 0, scale: 0.95 },
+					{ y: 0, opacity: 1, scale: 1, duration: 0.4, ease: 'back.out(1.2)' },
+				)
+				.set(dropdown, { pointerEvents: 'auto' })
+
+			// Yopilish animatsiyasi (timeline ichida teskari yo'nalishda ishlatiladi)
+		}
+
+		createTimeline()
+
+		const openDropdown = () => {
+			if (animating) return
+			tl.play()
+			isOpen = true
+			toggleBtn.setAttribute('aria-expanded', 'true')
+		}
+
+		const closeDropdown = () => {
+			if (animating) return
+			tl.reverse().then(() => {
+				gsap.set(dropdown, { display: 'none', pointerEvents: 'none' })
+			})
+			isOpen = false
+			toggleBtn.setAttribute('aria-expanded', 'false')
+		}
+
+		toggleBtn.addEventListener('click', e => {
+			e.stopPropagation()
+			if (isOpen) {
+				closeDropdown()
+			} else {
+				openDropdown()
+			}
+		})
+
+		// Tashqariga bosganda yopish
+		document.addEventListener('click', e => {
+			if (
+				isOpen &&
+				!toggleBtn.contains(e.target) &&
+				!dropdown.contains(e.target)
+			) {
+				closeDropdown()
+			}
+		})
+
+		// Escape tugmasi
+		document.addEventListener('keydown', e => {
+			if (e.key === 'Escape' && isOpen) {
+				closeDropdown()
+			}
+		})
+
+		// Resize bo'lganda yopish (agar kerak bo'lsa)
+		window.addEventListener('resize', () => {
+			if (isOpen) {
+				closeDropdown()
+			}
+		})
+	}
+
+	document.addEventListener('DOMContentLoaded', () => {
+		initMobileMenu()
+		initScrollHeader()
+		initLangDropdown()
+	})
+
+	document.addEventListener('astro:page-load', () => {
+		initMobileMenu()
+		initScrollHeader()
+		initLangDropdown()
+	})
 </script>
