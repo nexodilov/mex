@@ -43,6 +43,13 @@ const { label = 'About', heading = 'Not just a chat app, but an ecosystem' } =
 		</div>
 	</div>
 	<div class='about__cards'>
+		<div class='container'>
+			<!-- Atrofdagi juda kuchsiz fon yorug'ligi -->
+			<div class='ambient-glow'></div>
+
+			<!-- Markaziy aylana olovli yorug'lik elementi -->
+			<div class='fire-orb'></div>
+		</div>
 		<div class='card'>
 			<h5>Modern Messenger</h5>
 			<p>
@@ -99,21 +106,11 @@ const { label = 'About', heading = 'Not just a chat app, but an ecosystem' } =
 		overflow-x: hidden;
 	}
 
-	.container {
-		width: calc(100% - 32px);
-		margin: 0 auto;
-		overflow: hidden;
-
-		@media (min-width: 768px) {
-			width: calc(100% - 80px);
-		}
-	}
-
 	.about {
 		position: relative;
 		display: flex;
 		flex-direction: column;
-		// border: 1px solid red;
+		border: 1px solid red;
 		overflow: hidden;
 		padding: {
 			top: 100px;
@@ -123,7 +120,7 @@ const { label = 'About', heading = 'Not just a chat app, but an ecosystem' } =
 		}
 
 		&_image {
-			// border: 1px solid red;
+			border: 1px solid red;
 			position: relative;
 
 			.about__background {
@@ -132,7 +129,7 @@ const { label = 'About', heading = 'Not just a chat app, but an ecosystem' } =
 				transform: translateX(-50%);
 				width: 310px;
 				height: 310px;
-				// border: 1px solid red;
+				border: 1px solid red;
 				position: relative;
 
 				@media (min-width: 375px) {
@@ -249,7 +246,7 @@ const { label = 'About', heading = 'Not just a chat app, but an ecosystem' } =
 		}
 
 		&__content {
-			// border: 1px solid red;
+			border: 1px solid red;
 			display: flex;
 			flex-direction: column;
 			gap: 24px;
@@ -280,7 +277,7 @@ const { label = 'About', heading = 'Not just a chat app, but an ecosystem' } =
 			}
 
 			h2 {
-				// border: 1px solid red;
+				border: 1px solid red;
 				font-size: 24px;
 				text-align: center;
 				font-family: 'clash', sans-serif;
@@ -393,12 +390,15 @@ const { label = 'About', heading = 'Not just a chat app, but an ecosystem' } =
 		}
 
 		&__cards {
-			// border: 1px solid red;
+			position: relative;
+			border: 1px solid red;
 			display: flex;
 			flex-direction: column;
 			gap: 20px;
 
 			.card {
+				position: relative;
+				z-index: 5;
 				display: flex;
 				flex-direction: column;
 				gap: 12px;
@@ -445,6 +445,97 @@ const { label = 'About', heading = 'Not just a chat app, but an ecosystem' } =
 					color: #9799a1;
 					margin: 0;
 				}
+			}
+
+			.container {
+				position: absolute;
+				top: 8pc;
+				left: -10pc;
+				width: 450px;
+				height: 450px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				z-index: 1;
+			}
+
+			/* Markaziy aylana olov yorug'ligi */
+			.fire-orb {
+				position: relative;
+				width: 300px;
+				height: 300px;
+				border-radius: 50%;
+				/* Markazdan tarqaluvchi olovli ranglar */
+				background: radial-gradient(
+					circle,
+					#ff8935 0%,
+					#611d0c 40%,
+					transparent 75%
+				);
+				filter: blur(50px);
+				z-index: 10;
+				animation: pulse-glow 5s infinite alternate ease-in-out;
+			}
+
+			/* Yana ham kengroq tuman effekti (orqa qatlam) */
+			.fire-orb::before {
+				content: '';
+				position: absolute;
+				top: -50px;
+				left: -50px;
+				right: -50px;
+				bottom: -50px;
+				background: radial-gradient(
+					circle,
+					rgba(97, 29, 12, 0.6) 0%,
+					transparent 70%
+				);
+				filter: blur(80px);
+				z-index: -1;
+				opacity: 0.8;
+			}
+
+			/* Eng ichki issiq nuqta */
+			.fire-orb::after {
+				content: '';
+				position: absolute;
+				top: 30%;
+				left: 30%;
+				width: 40%;
+				height: 40%;
+				background: radial-gradient(
+					circle,
+					rgba(255, 137, 53, 0.8) 0%,
+					transparent 80%
+				);
+				filter: blur(20px);
+				z-index: 11;
+			}
+
+			/* Pulsatsiya animatsiyasi: yorug'likning o'ynashi */
+			@keyframes pulse-glow {
+				0% {
+					transform: scale(0.95);
+					opacity: 0.7;
+				}
+				100% {
+					transform: scale(1.1);
+					opacity: 1;
+				}
+			}
+
+			/* Atrofdagi mayda uchqunlar yoki qo'shimcha yorug'lik */
+			.ambient-glow {
+				position: absolute;
+				width: 600px;
+				height: 600px;
+				background: radial-gradient(
+					circle,
+					rgba(97, 29, 12, 0.2) 0%,
+					transparent 60%
+				);
+				filter: blur(100px);
+				pointer-events: none;
 			}
 		}
 	}
