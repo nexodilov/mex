@@ -53,9 +53,10 @@ const { label = 'About', heading = 'Not just a chat app, but an ecosystem' } =
 		<div class='card'>
 			<h5>Modern Messenger</h5>
 			<p>
-				A modern messenger with an integrated mall, payments, referral system,
-				games and mini-apps is a super-app that combines communication, commerce
-				and entertainment.
+				A modern messenger that meets all key user needs, including calls,
+				interactive messaging, and group communication, with a mini-app
+				ecosystem that expands user capabilities and enables rapid product
+				growth.
 			</p>
 		</div>
 		<div class='card'>
@@ -110,7 +111,6 @@ const { label = 'About', heading = 'Not just a chat app, but an ecosystem' } =
 		position: relative;
 		display: flex;
 		flex-direction: column;
-		border: 1px solid red;
 		overflow: hidden;
 		padding: {
 			top: 100px;
@@ -119,9 +119,20 @@ const { label = 'About', heading = 'Not just a chat app, but an ecosystem' } =
 			right: 16px;
 		}
 
+		@media (min-width: 1440px) {
+			padding: 220px 100px 0;
+			gap: 62px;
+		}
+
 		&_image {
-			border: 1px solid red;
 			position: relative;
+
+			@media (min-width: 1440px) {
+				position: absolute;
+				bottom: 0;
+				left: 50%;
+				transform: translateX(-50%);
+			}
 
 			.about__background {
 				top: 0;
@@ -129,7 +140,7 @@ const { label = 'About', heading = 'Not just a chat app, but an ecosystem' } =
 				transform: translateX(-50%);
 				width: 310px;
 				height: 310px;
-				border: 1px solid red;
+
 				position: relative;
 
 				@media (min-width: 375px) {
@@ -145,6 +156,11 @@ const { label = 'About', heading = 'Not just a chat app, but an ecosystem' } =
 				@media (min-width: 830px) {
 					width: 700px;
 					height: 700px;
+				}
+
+				@media (min-width: 1440px) {
+					width: 800px;
+					height: 800px;
 				}
 			}
 		}
@@ -246,7 +262,6 @@ const { label = 'About', heading = 'Not just a chat app, but an ecosystem' } =
 		}
 
 		&__content {
-			border: 1px solid red;
 			display: flex;
 			flex-direction: column;
 			gap: 24px;
@@ -277,7 +292,6 @@ const { label = 'About', heading = 'Not just a chat app, but an ecosystem' } =
 			}
 
 			h2 {
-				border: 1px solid red;
 				font-size: 24px;
 				text-align: center;
 				font-family: 'clash', sans-serif;
@@ -300,9 +314,9 @@ const { label = 'About', heading = 'Not just a chat app, but an ecosystem' } =
 					width: 70%;
 				}
 
-				@media (min-width: 1400px) {
-					width: 50%;
-					font-size: 72px;
+				@media (min-width: 1440px) {
+					width: 55%;
+					font-size: 70px;
 				}
 			}
 
@@ -333,6 +347,11 @@ const { label = 'About', heading = 'Not just a chat app, but an ecosystem' } =
 			@media (min-width: 830px) {
 				width: 450px;
 				height: 450px;
+			}
+
+			@media (min-width: 1440px) {
+				width: 550px;
+				height: 550px;
 			}
 		}
 
@@ -391,10 +410,51 @@ const { label = 'About', heading = 'Not just a chat app, but an ecosystem' } =
 
 		&__cards {
 			position: relative;
-			border: 1px solid red;
 			display: flex;
 			flex-direction: column;
 			gap: 20px;
+
+			@media (min-width: 1440px) {
+				height: 946px;
+				.card {
+					width: 350px;
+				}
+				.card:nth-of-type(2) {
+					position: absolute;
+					top: 0;
+					left: 50%;
+					transform: translateX(-50%);
+				}
+
+				.card:nth-of-type(3) {
+					position: absolute;
+					top: 312px;
+					left: 0;
+				}
+
+				.card:nth-of-type(4) {
+					position: absolute;
+					bottom: 0;
+					left: 80px;
+				}
+
+				.card:nth-of-type(5) {
+					position: absolute;
+					bottom: 0;
+					right: 80px;
+				}
+
+				.card:nth-of-type(6) {
+					position: absolute;
+					top: 312px;
+					right: 0;
+				}
+			}
+
+			@media (min-width: 2000px) {
+				width: 1600px;
+				margin: 0 auto;
+			}
 
 			.card {
 				position: relative;
@@ -415,6 +475,10 @@ const { label = 'About', heading = 'Not just a chat app, but an ecosystem' } =
 				@media (min-width: 768px) {
 					padding: 32px 40px;
 					gap: 16px;
+				}
+
+				@media (min-width: 1440px) {
+					padding: 32px 40px 41px;
 				}
 
 				h5 {
