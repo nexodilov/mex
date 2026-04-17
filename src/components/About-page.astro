@@ -34,7 +34,7 @@ const { label = 'About', heading = 'Not just a chat app, but an ecosystem' } =
 					</defs>
 					<text class='circle-text'>
 						<textPath href='#circlePath' startOffset='0%'>
-							Decentralization  ·  Payments · MiniApps · Mall · Entertainment
+							Decentralization · Payments · MiniApps · Mall · Entertainment
 						</textPath>
 					</text>
 				</svg>
@@ -81,6 +81,11 @@ const { label = 'About', heading = 'Not just a chat app, but an ecosystem' } =
 				height: 310px;
 				border: 1px solid red;
 				position: relative;
+
+				@media (min-width: 375px) {
+					width: 400px;
+					height: 400px;
+				}
 			}
 		}
 
@@ -262,11 +267,15 @@ const { label = 'About', heading = 'Not just a chat app, but an ecosystem' } =
 		}
 
 		.circle-text-wrapper {
-			// border: 1px solid red;
 			width: 90%;
 			height: 90%;
 			position: absolute;
 			animation: spin 15s linear infinite;
+			
+			@media (min-width: 375px) {
+				width: 120%;
+				height: 120%;
+			}
 		}
 
 		.circle-svg {
