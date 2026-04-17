@@ -42,6 +42,51 @@ const { label = 'About', heading = 'Not just a chat app, but an ecosystem' } =
 			<span class='mex-text'>MEX</span>
 		</div>
 	</div>
+	<div class='about__cards'>
+		<div class='card'>
+			<h5>Modern Messenger</h5>
+			<p>
+				A modern messenger with an integrated mall, payments, referral system,
+				games and mini-apps is a super-app that combines communication, commerce
+				and entertainment.
+			</p>
+		</div>
+		<div class='card'>
+			<h5>Financial services</h5>
+			<p>
+				A modern messenger that meets all key user needs, including calls,
+				interactive messaging, and group communication, with a mini-app
+				ecosystem that expands user capabilities and enables rapid product
+				growth.
+			</p>
+		</div>
+		<div class='card'>
+			<h5>MINI APPS infrastructure</h5>
+			<p>
+				A robust financial infrastructure integrating card and payment
+				solutions, decentralized financial services, digital assets, as well as
+				investment, lending, and financial inclusion tools for the population.
+			</p>
+		</div>
+		<div class='card'>
+			<h5 class='colorful'>Private protocol R&D <span>(coming soon)</span></h5>
+			<p>
+				It is already clear that the future belongs to super apps, and whoever
+				can competently combine all these functions will receive a loyal
+				audience and a stable income.
+			</p>
+		</div>
+		<div class='card'>
+			<h5 class='colorful'>
+				NAtive implementation of AI <span>(coming soon)</span>
+			</h5>
+			<p>
+				It is already clear that the future belongs to super apps, and whoever
+				can competently combine all these functions will receive a loyal
+				audience and a stable income.
+			</p>
+		</div>
+	</div>
 </section>
 
 <style lang='scss'>
@@ -344,6 +389,62 @@ const { label = 'About', heading = 'Not just a chat app, but an ecosystem' } =
 			}
 			100% {
 				transform: rotate(360deg);
+			}
+		}
+
+		&__cards {
+			border: 1px solid red;
+			display: flex;
+			flex-direction: column;
+			gap: 20px;
+
+			.card {
+				display: flex;
+				flex-direction: column;
+				gap: 12px;
+				border-radius: 12px;
+				padding: 24px 32px;
+				border: 1px solid rgba(255, 255, 255, 0.017);
+				box-shadow:
+					inset 0 0.3px 2px rgba(255, 255, 255, 0.744),
+					0 5px 20px rgba(0, 0, 0, 0.5);
+				background-color: rgba(0, 0, 0, 0.3);
+				backdrop-filter: blur(100px);
+				-webkit-backdrop-filter: blur(100px);
+
+				@media (min-width: 768px) {
+					padding: 32px 40px;
+					gap: 16px;
+				}
+
+				h5 {
+					margin: 0;
+					text-transform: uppercase;
+					font-size: 16px;
+					font-family: 'clash', sans-serif;
+					font-weight: 700;
+					color: #ffffff;
+
+					span {
+						color: #ffffff;
+					}
+
+					@media (min-width: 768px) {
+						font-size: 24px;
+					}
+				}
+
+				h5.colorful {
+					color: #9799a1;
+				}
+
+				p {
+					font-size: 14px;
+					font-family: 'clash', sans-serif;
+					font-weight: 400;
+					color: #9799a1;
+					margin: 0;
+				}
 			}
 		}
 	}
