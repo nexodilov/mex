@@ -7,7 +7,7 @@ const { label = 'About', heading = 'Not just a chat app, but an ecosystem' } =
 	Astro.props
 ---
 
-<section class='about container'>
+<section class='about'>
 	<div class='canvas'>
 		<div class='glow glow-deep-blue'></div>
 		<div class='glow glow-soft-blue'></div>
@@ -57,6 +57,7 @@ const { label = 'About', heading = 'Not just a chat app, but an ecosystem' } =
 	.container {
 		width: calc(100% - 32px);
 		margin: 0 auto;
+		overflow: hidden;
 
 		@media (min-width: 768px) {
 			width: calc(100% - 80px);
@@ -69,8 +70,12 @@ const { label = 'About', heading = 'Not just a chat app, but an ecosystem' } =
 		flex-direction: column;
 		gap: 32px;
 		border: 1px solid red;
+		// overflow: hidden;
 		padding: {
 			top: 100px;
+			bottom: 0;
+			left: 16px;
+			right: 16px;
 		}
 
 		&_image {
@@ -275,7 +280,7 @@ const { label = 'About', heading = 'Not just a chat app, but an ecosystem' } =
 			height: 90%;
 			position: absolute;
 			animation: spin 15s linear infinite;
-			
+
 			@media (min-width: 375px) {
 				width: 120%;
 				height: 120%;
