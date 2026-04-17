@@ -68,7 +68,6 @@ const { label = 'About', heading = 'Not just a chat app, but an ecosystem' } =
 		position: relative;
 		display: flex;
 		flex-direction: column;
-		gap: 32px;
 		border: 1px solid red;
 		overflow: hidden;
 		padding: {
@@ -94,6 +93,16 @@ const { label = 'About', heading = 'Not just a chat app, but an ecosystem' } =
 				@media (min-width: 375px) {
 					width: 400px;
 					height: 400px;
+				}
+
+				@media (min-width: 760px) {
+					width: 600px;
+					height: 600px;
+				}
+
+				@media (min-width: 830px) {
+					width: 700px;
+					height: 700px;
 				}
 			}
 		}
@@ -273,6 +282,16 @@ const { label = 'About', heading = 'Not just a chat app, but an ecosystem' } =
 			justify-content: center;
 			align-items: center;
 			overflow: hidden;
+
+			@media (min-width: 762px) {
+				width: 400px;
+				height: 400px;
+			}
+
+			@media (min-width: 830px) {
+				width: 450px;
+				height: 450px;
+			}
 		}
 
 		.circle-text-wrapper {
@@ -313,6 +332,10 @@ const { label = 'About', heading = 'Not just a chat app, but an ecosystem' } =
 			color: white;
 			letter-spacing: 4px;
 			z-index: 2;
+
+			@media (min-width: 375px) {
+				font-size: 61.15px;
+			}
 		}
 
 		@keyframes spin {
